@@ -1,0 +1,2 @@
+/cluster/work/projects/nn8104k/esther_thesis/envs/jax_env/bin/python: line 34: 2670347 Killed                  /usr/bin/singularity --silent exec $DIR/../$CONTAINER_IMAGE bash -c "eval \"\$(/OLIVIA_TYKKY_1nui3qS/miniforge/bin/conda shell.bash hook )\"  && conda activate env1 &>/dev/null &&  $_venv_act && exec -a $_O_SOURCE $DIR/python $( test $# -eq 0 || printf " %q" "$@" )"
+[2026-11-12T18:38:57.283] error: Detected 1 oom_kill event in StepId=2852576.batch. Some of the step tasks have been OOM Killed.

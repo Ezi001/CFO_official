@@ -13,6 +13,7 @@ from flax.training.train_state import TrainState
 from jax import value_and_grad
 from jax.tree_util import tree_leaves
 from tqdm.auto import trange
+import time
 
 from utils.data import prepare_tf_data, prefetch_to_device
 from utils.checkpoints import save_train_state
@@ -65,7 +66,12 @@ class ARTrainArgs:
     best_ckpt_prefix: str = "best_"
 
 
-def _prepare_cfo_train_batch(method, raw_batch, time_key, noise_key):
+def _prepare_cfo_train_batch(method, 
+                            raw_batch, 
+                            time_key, 
+                            noise_key, 
+                            #ocean_mask
+    ):
     if method.use_condition:
         spline_coef, t_start, t_end, condition, *_ = raw_batch
     else:
@@ -83,8 +89,21 @@ def _prepare_cfo_train_batch(method, raw_batch, time_key, noise_key):
 
     if method.use_condition:
         condition = condition[0]
-        return (spline_coef, condition, t_start, t_end, delta_t, eps)
-    return (spline_coef, t_start, t_end, delta_t, eps)
+        return (spline_coef, 
+                condition, 
+                t_start, 
+                t_end, 
+                delta_t, 
+                eps, 
+                #ocean_mask
+                )
+    return (spline_coef, 
+            t_start, 
+            t_end, 
+            delta_t, 
+            eps, 
+            #ocean_mask
+            )
 
 
 def _run_cfo_eval(method, state, epoch: int, eval_dataset, logger: ExperimentLogger):
@@ -139,7 +158,12 @@ def init_cfo_train_state(
     return TrainState.create(apply_fn=method.model.apply, params=variables['params'], tx=tx)
 
 
-def train_cfo(method, spline_dataloader, args: CFOTrainArgs, eval_dataset: Optional[Tuple[np.ndarray, np.ndarray]] = None):
+def train_cfo(method, 
+                spline_dataloader, 
+                args: CFOTrainArgs, 
+                eval_dataset: Optional[Tuple[np.ndarray, np.ndarray]] = None, 
+                #ocean_mask
+                ):
     state = init_cfo_train_state(
         method,
         seed=args.random_seed,
@@ -177,7 +201,12 @@ def train_cfo(method, spline_dataloader, args: CFOTrainArgs, eval_dataset: Optio
 
     for epoch in pbar:
         rng_key, time_key, noise_key = jax.random.split(rng_key, 3)
-        batch = _prepare_cfo_train_batch(method, next(data), time_key, noise_key)
+        batch = _prepare_cfo_train_batch(method, 
+                                        next(data), 
+                                        time_key, 
+                                        noise_key, 
+                                        #ocean_mask
+                                        )
         loss, state = step_jit(state, batch)
 
         should_save_running_interval = (
@@ -188,6 +217,7 @@ def train_cfo(method, spline_dataloader, args: CFOTrainArgs, eval_dataset: Optio
 
         if args.do_eval and (epoch % args.eval_interval == 0) and epoch > 0 and eval_dataset is not None:
             rel_l2_value, rmse_value, rel_fro_value = _run_cfo_eval(method, state, epoch, eval_dataset, logger)
+
             should_save_running_interval = should_save_running_interval or (args.running_ckpt_dir is not None)
             if rel_l2_value < best_l2_error:
                 best_l2_error = rel_l2_value
@@ -221,6 +251,7 @@ def train_cfo(method, spline_dataloader, args: CFOTrainArgs, eval_dataset: Optio
         loss_value = float(loss)
         loss_log.append(loss_value)
         pbar.set_postfix({"loss": loss_value})
+        #print()
     print("Training complete.")
 
     return {

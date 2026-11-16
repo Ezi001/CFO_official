@@ -68,6 +68,57 @@ def load_diffusion_reaction(
     return train_data, test_data
 
 
+def load_nordic(
+    file_path: str = "data/nordic/nordic_seas.h5",
+    training_ratio: float = 9 / 10,
+    random_seed: int = 42,
+    start_ind: int = 1,
+    end_ind: int = 101,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Load Nordic Seas trajectories, excluding static root-level fields."""
+    dataset = []
+    with h5py.File(file_path, "r") as f:
+        trajectory_keys = sorted(
+            (key for key in f.keys() if key.isdigit()),
+            key=int,
+        )
+        for key in trajectory_keys:
+            group = f[key]
+            if "data" in group:
+                dataset.append(np.asarray(group["data"], dtype=np.float32))
+        
+        # bathymetry = f["bathymetry/data"][()]
+        # land_mask = f["land_mask/data"][()]
+        # log_bathymetry = f["log_bathymetry/data"][()]
+
+    if not dataset:
+        raise ValueError(f"No numbered trajectory groups with a 'data' dataset found in '{file_path}'.")
+
+    dataset = np.stack(dataset, axis=0)
+    np.random.seed(random_seed)
+    n_samples = len(dataset)
+    
+    # Shuffling the data
+    train_size = int(training_ratio * n_samples)
+    
+    indices = np.arange(n_samples)
+    np.random.shuffle(indices)
+
+    train_indices = indices[:train_size]
+    test_indices = indices[train_size:]
+    train_data = dataset[train_indices, start_ind:end_ind]
+    test_data = dataset[test_indices, start_ind:end_ind]
+    return train_data, test_data
+
+def load_static_variables(file_path: str = "data/nordic/nordic_seas.h5",
+):
+    dict = {}
+    with h5py.File(file_path, "r") as f:      
+        dict[bathymetry] = f["bathymetry/data"][()]
+        dict[land_mask] = f["land_mask/data"][()]
+        dict[log_bathymetry] = f["log_bathymetry/data"][()]
+    return dict
+
 
 
 def load_shallow_water_pdebench(
@@ -106,6 +157,7 @@ def load_dataset_splits(dataset: str, file_path: str | None = None) -> dict[str,
         "burgers": load_burgers,
         "dr": load_diffusion_reaction,
         "swe": load_shallow_water_pdebench,
+        "nordic": load_nordic,
     }
     if key not in loaders:
         raise ValueError(f"Unsupported dataset='{dataset}'. Supported: {sorted(loaders)}")
@@ -130,6 +182,7 @@ __all__ = [
     "load_Lorenz",
     "load_burgers",
     "load_diffusion_reaction",
+    "load_nordic_pdebench",
     "load_shallow_water_pdebench",
     "load_dataset_splits",
 ]

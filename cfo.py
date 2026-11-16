@@ -108,7 +108,7 @@ class ContinuousFlowOperator:
             x = step_fn(state, x, t_batch, condition, delta_t)
         return x
     
-    def uniform_inference(self, state, x_0, trajectory_points_num: int, steps_per_segment=3, condition=None, method="RK4"):
+    def uniform_inference(self, state, x_0, trajectory_points_num: int, steps_per_segment=2, condition=None, method="RK4"):
         points_num = int(trajectory_points_num)
         segment_steps = max(int(steps_per_segment), 1)
         segment_dt = 1.0 / max(points_num - 1, 1)

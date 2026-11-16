@@ -1,0 +1,57 @@
+Starting job 2868994 on gpu-1-94 on Olivia at Sat Nov 14 18:02:53 CET 2026
+
+===== JOB INFO =====
+Job ID: 2868994
+Node: gpu-1-94
+Architecture: aarch64
+CUDA_VISIBLE_DEVICES: 0
+===== NVIDIA GPU =====
+Sat Nov 14 18:02:53 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.65.06              Driver Version: 580.65.06      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GH200 120GB             On  |   00000029:01:00.0 Off |                    0 |
+| N/A   27C    P0             94W /  900W |       3MiB /  97871MiB |      0%   E. Process |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+===== PYTHON CHECK =====
+JAX: 0.4.36 [CudaDevice(id=0)]
+Architecture: aarch64
+===== START CFO TRAINING =====
+Sat Nov 14 06:02:56 PM CET 2026
+
+Job 2868994 consumed 0.0 billing hours and 0.0 GPU hours from project nn8104k.
+
+Submitted 2026-11-14T12:06:32; waited 5.9 hours in the queue after becoming eligible to run.
+
+Requested wallclock time: 4.0 hours
+Elapsed wallclock time:   9.0 seconds
+
+Job failed.
+
+Task and CPU statistics:
+ID             CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+2868994           4            0.0 %  2026-11-14T18:02:52    9.0 s  1
+2868994.batch     4      1    25.9 %  2026-11-14T18:02:52    9.0 s  1
+
+Used CPU time:   9.3 CPU seconds
+Unused CPU time: 26.7 CPU seconds
+
+Memory statistics, in GiB:
+ID              Alloc   Usage
+2868994         120.0        
+2868994.batch   120.0     2.1
+
+Job 2868994 completed at Sat Nov 14 18:03:02 CET 2026

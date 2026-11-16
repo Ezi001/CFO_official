@@ -44,6 +44,7 @@ Download datasets and place under `data/`:
 | Burgers | [Drive](https://drive.google.com/drive/folders/1tz0FQ8qqbLMxu_WPlAMHZmLMr2sBv2oE?usp=sharing) | `data/burgers/` |
 | Diffusion-Reaction | [DaRUS](https://darus.uni-stuttgart.de/file.xhtml?fileId=133017&version=8.0) | `data/diffusion_reaction/` |
 | Shallow Water | [DaRUS](https://darus.uni-stuttgart.de/file.xhtml?fileId=133021&version=8.0) | `data/shallow_water/` |
+| Nordic Seas | — | `data/nordic/nordic_seas.h5` |
 
 ## Training
 
@@ -85,6 +86,16 @@ python scripts/train_cfo.py --dataset swe --model UNet2D --epochs 5000 --batch-s
 
 # AR
 python scripts/train_ar.py --dataset swe --model DiT --epochs 5000 --batch-size 256 --lr 1e-5 --eval-interval 500 --ckpt-prefix ar_swe_dit
+```
+
+### Nordic Seas
+
+```bash
+# CFO
+python scripts/train_cfo.py --dataset nordic --model UNet2D --dataset-path data/nordic/nordic_seas.h5
+
+# AR
+python scripts/train_ar.py --dataset nordic --model UNet2D --dataset-path data/nordic/nordic_seas.h5
 ```
 
 ## Evaluation

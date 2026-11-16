@@ -1,0 +1,57 @@
+Starting job 2852576 on gpu-1-11 on Olivia at Thu Nov 12 18:38:22 CET 2026
+
+===== JOB INFO =====
+Job ID: 2852576
+Node: gpu-1-11
+Architecture: aarch64
+CUDA_VISIBLE_DEVICES: 0
+===== NVIDIA GPU =====
+Thu Nov 12 18:38:25 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.65.06              Driver Version: 580.65.06      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GH200 120GB             On  |   00000009:01:00.0 Off |                    0 |
+| N/A   23C    P0             93W /  900W |       2MiB /  97871MiB |      0%   E. Process |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+===== PYTHON CHECK =====
+JAX: 0.4.36 [CudaDevice(id=0)]
+Architecture: aarch64
+===== START CFO TRAINING =====
+Thu Nov 12 06:38:28 PM CET 2026
+
+Job 2852576 consumed 0.0 billing hours and 0.0 GPU hours from project nn8104k.
+
+Submitted 2026-11-12T17:58:24; waited 40.0 minutes in the queue after becoming eligible to run.
+
+Requested wallclock time: 4.0 hours
+Elapsed wallclock time:   35.0 seconds
+
+Job had an out of memory error.
+
+Task and CPU statistics:
+ID             CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+2852576           4            0.0 %  2026-11-12T18:38:22   35.0 s  Signal 125
+2852576.batch     4      1    24.3 %  2026-11-12T18:38:22   35.0 s  Signal 125
+
+Used CPU time:   34.0 CPU seconds
+Unused CPU time: 1.8 CPU minutes
+
+Memory statistics, in GiB:
+ID              Alloc   Usage
+2852576          32.0        
+2852576.batch    32.0    32.4
+
+Job 2852576 completed at Thu Nov 12 18:38:57 CET 2026

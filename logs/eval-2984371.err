@@ -1,0 +1,6 @@
+/OLIVIA_TYKKY_1nui3qS/miniforge/envs/env1/lib/python3.12/site-packages/numpy/core/fromnumeric.py:3504: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/OLIVIA_TYKKY_1nui3qS/miniforge/envs/env1/lib/python3.12/site-packages/numpy/core/_methods.py:129: RuntimeWarning: invalid value encountered in divide
+  ret = ret.dtype.type(ret / rcount)
+/cluster/work/projects/nn8104k/esther_thesis/CFO_official/utils/metrics.py:55: RuntimeWarning: invalid value encountered in scalar divide
+  return float(err / ref)

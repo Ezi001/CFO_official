@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import sys
 import numpy as np
+import resource
 
 os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "3")
 os.environ.setdefault("ABSL_MIN_LOG_LEVEL", "3")
@@ -39,7 +40,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--gamma", type=float, default=1e-5)
 
     # data / model
-    parser.add_argument("--dataset", type=str, default="lorenz", choices=["lorenz", "burgers", "dr", "swe"])
+    parser.add_argument("--dataset", type=str, default="lorenz", choices=["lorenz", "burgers", "dr", "swe", "nordic"])
     parser.add_argument("--dataset-path", type=str, default=None)
     parser.add_argument("--model", type=str, default="SimpleMLP", choices=["UNet1D", "UNet2D", "FNO1d", "FNO2d", "DiT", "SimpleMLP"])
     parser.add_argument("--spline-type", type=str, default="quintic", choices=["linear", "quintic"])
@@ -91,6 +92,11 @@ def main() -> None:
         print(args)
         return
 
+    # static_data = load_static_variables(args.dataset_path)
+    # ocean_mask = static_data["land_mask"]
+    # bathymetry = static_data["bathymetry"]
+    # log_bathymetry = static_data["log_bathymetry"]
+
     splits = load_dataset_splits(args.dataset, file_path=args.dataset_path)
     train_data = splits["train"]
     eval_data = splits["eval"]
@@ -122,6 +128,7 @@ def main() -> None:
 
     print("Preparing spline dataloader...")
     
+    print("peak RSS (GB):", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6)
     spline_loader = _build_spline_dataset(
         train_data=train_data,
         spline_type=args.spline_type,
@@ -131,6 +138,7 @@ def main() -> None:
         seed=args.seed,
         time=train_time,
     )
+    print("peak RSS (GB):", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6)
     print("Spline construction complete. Starting training...")
 
     method = ContinuousFlowOperator(
@@ -159,8 +167,15 @@ def main() -> None:
     ) 
 
     eval_dataset = (eval_data[:, 0], eval_data)
+
+    # TODO: concatenate the bathymetry as a second channel
+
+    ocean_mask = jnp.asarray(ocean_mask, dtype=jnp.float32)
     print("Starting training loop...")
-    train_output = train_cfo(method, spline_loader, train_args, eval_dataset=eval_dataset)
+    train_output = train_cfo(method, 
+                            spline_loader, 
+                            train_args, 
+                            eval_dataset=eval_dataset)
 
     state_for_test = train_output["state"]
     if np.isfinite(train_output["best_l2_error"]):

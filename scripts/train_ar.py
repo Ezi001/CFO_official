@@ -36,7 +36,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--beta2", type=float, default=0.99)
 
     # data/model
-    parser.add_argument("--dataset", type=str, default="lorenz", choices=["lorenz", "burgers", "dr", "swe"])
+    parser.add_argument("--dataset", type=str, default="lorenz", choices=["lorenz", "burgers", "dr", "swe", "nordic"])
     parser.add_argument("--dataset-path", type=str, default=None)
     parser.add_argument("--model", type=str, default="UNet1D", choices=["UNet1D", "UNet2D", "FNO1d", "FNO2d", "DiT", "SimpleMLP"])
     parser.add_argument("--use-time", action="store_true", help="Use time embedding in AR model")

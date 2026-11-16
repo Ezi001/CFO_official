@@ -1,0 +1,27 @@
+0.4.36 [CudaDevice(id=0)]
+===== START CFO TRAINING =====
+Thu Nov 12 05:32:47 PM CET 2026
+
+Job 2852120 consumed 0.0 billing hours and 0.0 GPU hours from project nn8104k.
+
+Submitted 2026-11-12T17:25:56; waited 6.8 minutes in the queue after becoming eligible to run.
+
+Requested wallclock time: 4.0 hours
+Elapsed wallclock time:   6.0 seconds
+
+Job failed.
+
+Task and CPU statistics:
+ID             CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+2852120           4            0.0 %  2026-11-12T17:32:41    6.0 s  255 (exit status out of range)
+2852120.batch     4      1    14.3 %  2026-11-12T17:32:41    6.0 s  255 (exit status out of range)
+
+Used CPU time:   3.4 CPU seconds
+Unused CPU time: 20.6 CPU seconds
+
+Memory statistics, in GiB:
+ID              Alloc   Usage
+2852120          32.0        
+2852120.batch    32.0     1.2
+
+Job 2852120 completed at Thu Nov 12 17:32:47 CET 2026

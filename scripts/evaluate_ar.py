@@ -33,7 +33,7 @@ def parse_args() -> argparse.Namespace:
         "--dataset",
         type=str,
         required=True,
-        choices=["lorenz", "burgers", "dr", "swe"],
+        choices=["lorenz", "burgers", "dr", "swe", "nordic"],
         help="Dataset name",
     )
     parser.add_argument("--dataset-path", type=str, default=None, help="Optional dataset file path override")

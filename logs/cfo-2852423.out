@@ -1,0 +1,52 @@
+Starting job 2852423 on gpu-1-38 on Olivia at Thu Nov 12 17:54:40 CET 2026
+
+===== JOB INFO =====
+Job ID: 2852423
+Node: gpu-1-38
+Architecture: aarch64
+CUDA_VISIBLE_DEVICES: 0
+===== NVIDIA GPU =====
+Thu Nov 12 17:54:43 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.65.06              Driver Version: 580.65.06      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GH200 120GB             On  |   00000009:01:00.0 Off |                    0 |
+| N/A   27C    P0             92W /  900W |       1MiB /  97871MiB |      0%   E. Process |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+Job 2852423 consumed 0.0 billing hours and 0.0 GPU hours from project nn8104k.
+
+Submitted 2026-11-12T17:46:01; waited 8.7 minutes in the queue after becoming eligible to run.
+
+Requested wallclock time: 4.0 hours
+Elapsed wallclock time:   4.0 seconds
+
+Job failed.
+
+Task and CPU statistics:
+ID             CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+2852423           4            0.0 %  2026-11-12T17:54:40    4.0 s  255 (exit status out of range)
+2852423.batch     4      1    20.6 %  2026-11-12T17:54:40    4.0 s  255 (exit status out of range)
+
+Used CPU time:   3.3 CPU seconds
+Unused CPU time: 12.7 CPU seconds
+
+Memory statistics, in GiB:
+ID              Alloc   Usage
+2852423          32.0        
+2852423.batch    32.0     0.4
+
+Job 2852423 completed at Thu Nov 12 17:54:44 CET 2026

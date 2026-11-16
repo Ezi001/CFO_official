@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/cluster/work/projects/nn8104k/esther_thesis/CFO_official/scripts/train_cfo.py", line 19, in <module>
+    from utils.readers import load_dataset_splits
+  File "/cluster/work/projects/nn8104k/esther_thesis/CFO_official/utils/__init__.py", line 14, in <module>
+    from .metrics import relative_L2_error, relative_frobenius_error, rmse
+  File "/cluster/work/projects/nn8104k/esther_thesis/CFO_official/utils/metrics.py", line 57
+    def masked_relative_L2_error(gt: np.ndarray, pred: np.ndarray, eps: float = 1e-8, ocean_mask) -> np.ndarray:
+                                                                                      ^^^^^^^^^^
+SyntaxError: parameter without a default follows parameter with a default

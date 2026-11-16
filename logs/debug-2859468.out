@@ -1,0 +1,182 @@
+Starting job 2859468 on gpu-1-49 on Olivia at Fri Nov 13 14:52:04 CET 2026
+
+===== JOB INFO =====
+Job ID: 2859468
+Node: gpu-1-49
+Architecture: aarch64
+CUDA_VISIBLE_DEVICES: 0
+===== NVIDIA GPU =====
+Fri Nov 13 14:52:07 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.65.06              Driver Version: 580.65.06      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GH200 120GB             On  |   00000019:01:00.0 Off |                    0 |
+| N/A   27C    P0             82W /  900W |       2MiB /  97871MiB |      0%   E. Process |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+===== PYTHON CHECK =====
+JAX: 0.4.36 [CudaDevice(id=0)]
+Architecture: aarch64
+===== START CFO TRAINING =====
+Fri Nov 13 02:52:10 PM CET 2026
+=== TASK SUMMARY ===
+Quintic CFO learn with UNet2D from ratio=1.000 (full trajectories) observation of nordic dataset.
+=== CFO Training Run ===
+dataset=nordic model=UNet2D spline_type=quintic
+seed=0 epochs=100 batch_size=16 spline_batch_size=32
+lr=1e-05 beta1=0.9 beta2=0.99
+eval_interval=1 do_eval=True
+train/eval/test sizes = 90/5/5
+input_shape=(128, 128, 1)
+checkpoint_policy running_every=1 keep=3 best_keep=1
+Preparing spline dataloader...
+peak RSS (GB): 2.52096
+Spline construction complete. Starting training...
+Starting training loop...
+Model parameters: 8095489
+[eval] epoch=1 rel_l2=0.412537 rmse=0.239634 rel_fro=0.409484 [BEST]
+[eval] epoch=2 rel_l2=0.399407 rmse=0.232157 rel_fro=0.396709 [BEST]
+[eval] epoch=3 rel_l2=0.386854 rmse=0.225055 rel_fro=0.384578 [BEST]
+[eval] epoch=4 rel_l2=0.374905 rmse=0.218314 rel_fro=0.373062 [BEST]
+[eval] epoch=5 rel_l2=0.364156 rmse=0.212254 rel_fro=0.362706 [BEST]
+[eval] epoch=6 rel_l2=0.355519 rmse=0.207387 rel_fro=0.354388 [BEST]
+[eval] epoch=7 rel_l2=0.348038 rmse=0.203172 rel_fro=0.347185 [BEST]
+[eval] epoch=8 rel_l2=0.340973 rmse=0.199186 rel_fro=0.340372 [BEST]
+[eval] epoch=9 rel_l2=0.334300 rmse=0.195456 rel_fro=0.333997 [BEST]
+[eval] epoch=10 rel_l2=0.328535 rmse=0.192237 rel_fro=0.328495 [BEST]
+[eval] epoch=11 rel_l2=0.323659 rmse=0.189499 rel_fro=0.323816 [BEST]
+[eval] epoch=12 rel_l2=0.319202 rmse=0.187015 rel_fro=0.319570 [BEST]
+[eval] epoch=13 rel_l2=0.315743 rmse=0.185039 rel_fro=0.316192 [BEST]
+[eval] epoch=14 rel_l2=0.312494 rmse=0.183175 rel_fro=0.313006 [BEST]
+[eval] epoch=15 rel_l2=0.309850 rmse=0.181637 rel_fro=0.310378 [BEST]
+[eval] epoch=16 rel_l2=0.307312 rmse=0.180104 rel_fro=0.307758 [BEST]
+[eval] epoch=17 rel_l2=0.305033 rmse=0.178701 rel_fro=0.305361 [BEST]
+[eval] epoch=18 rel_l2=0.303091 rmse=0.177516 rel_fro=0.303335 [BEST]
+[eval] epoch=19 rel_l2=0.301495 rmse=0.176512 rel_fro=0.301619 [BEST]
+[eval] epoch=20 rel_l2=0.300120 rmse=0.175640 rel_fro=0.300129 [BEST]
+[eval] epoch=21 rel_l2=0.298887 rmse=0.174861 rel_fro=0.298798 [BEST]
+[eval] epoch=22 rel_l2=0.298043 rmse=0.174279 rel_fro=0.297803 [BEST]
+[eval] epoch=23 rel_l2=0.297594 rmse=0.173919 rel_fro=0.297187 [BEST]
+[eval] epoch=24 rel_l2=0.297596 rmse=0.173818 rel_fro=0.297016
+[eval] epoch=25 rel_l2=0.298162 rmse=0.174032 rel_fro=0.297382
+[eval] epoch=26 rel_l2=0.299014 rmse=0.174422 rel_fro=0.298048
+[eval] epoch=27 rel_l2=0.300200 rmse=0.175007 rel_fro=0.299051
+[eval] epoch=28 rel_l2=0.301251 rmse=0.175537 rel_fro=0.299956
+[eval] epoch=29 rel_l2=0.301749 rmse=0.175780 rel_fro=0.300371
+[eval] epoch=30 rel_l2=0.301902 rmse=0.175840 rel_fro=0.300474
+[eval] epoch=31 rel_l2=0.301972 rmse=0.175858 rel_fro=0.300506
+[eval] epoch=32 rel_l2=0.301870 rmse=0.175788 rel_fro=0.300386
+[eval] epoch=33 rel_l2=0.302366 rmse=0.176043 rel_fro=0.300822
+[eval] epoch=34 rel_l2=0.302505 rmse=0.176108 rel_fro=0.300934
+[eval] epoch=35 rel_l2=0.303252 rmse=0.176512 rel_fro=0.301626
+[eval] epoch=36 rel_l2=0.303239 rmse=0.176509 rel_fro=0.301620
+[eval] epoch=37 rel_l2=0.303133 rmse=0.176460 rel_fro=0.301537
+[eval] epoch=38 rel_l2=0.303551 rmse=0.176706 rel_fro=0.301958
+[eval] epoch=39 rel_l2=0.303097 rmse=0.176468 rel_fro=0.301550
+[eval] epoch=40 rel_l2=0.302273 rmse=0.176043 rel_fro=0.300823
+[eval] epoch=41 rel_l2=0.301550 rmse=0.175677 rel_fro=0.300199
+[eval] epoch=42 rel_l2=0.301014 rmse=0.175423 rel_fro=0.299764
+[eval] epoch=43 rel_l2=0.300994 rmse=0.175466 rel_fro=0.299837
+[eval] epoch=44 rel_l2=0.300322 rmse=0.175162 rel_fro=0.299317
+[eval] epoch=45 rel_l2=0.300764 rmse=0.175499 rel_fro=0.299893
+[eval] epoch=46 rel_l2=0.301755 rmse=0.176175 rel_fro=0.301048
+[eval] epoch=47 rel_l2=0.302804 rmse=0.176895 rel_fro=0.302277
+[eval] epoch=48 rel_l2=0.303925 rmse=0.177692 rel_fro=0.303639
+[eval] epoch=49 rel_l2=0.305401 rmse=0.178695 rel_fro=0.305352
+[eval] epoch=50 rel_l2=0.305934 rmse=0.179134 rel_fro=0.306103
+[eval] epoch=51 rel_l2=0.306987 rmse=0.179900 rel_fro=0.307410
+[eval] epoch=52 rel_l2=0.307882 rmse=0.180569 rel_fro=0.308553
+[eval] epoch=53 rel_l2=0.308283 rmse=0.180922 rel_fro=0.309156
+[eval] epoch=54 rel_l2=0.308094 rmse=0.180924 rel_fro=0.309160
+[eval] epoch=55 rel_l2=0.308262 rmse=0.181105 rel_fro=0.309468
+[eval] epoch=56 rel_l2=0.308390 rmse=0.181271 rel_fro=0.309753
+[eval] epoch=57 rel_l2=0.308306 rmse=0.181300 rel_fro=0.309801
+[eval] epoch=58 rel_l2=0.307368 rmse=0.180784 rel_fro=0.308920
+[eval] epoch=59 rel_l2=0.306318 rmse=0.180209 rel_fro=0.307937
+[eval] epoch=60 rel_l2=0.304727 rmse=0.179323 rel_fro=0.306423
+[eval] epoch=61 rel_l2=0.302592 rmse=0.178086 rel_fro=0.304310
+[eval] epoch=62 rel_l2=0.299427 rmse=0.176238 rel_fro=0.301152
+[eval] epoch=63 rel_l2=0.296993 rmse=0.174826 rel_fro=0.298739 [BEST]
+[eval] epoch=64 rel_l2=0.295018 rmse=0.173667 rel_fro=0.296758 [BEST]
+[eval] epoch=65 rel_l2=0.292450 rmse=0.172157 rel_fro=0.294178 [BEST]
+[eval] epoch=66 rel_l2=0.289079 rmse=0.170172 rel_fro=0.290786 [BEST]
+[eval] epoch=67 rel_l2=0.286144 rmse=0.168422 rel_fro=0.287796 [BEST]
+[eval] epoch=68 rel_l2=0.283054 rmse=0.166588 rel_fro=0.284662 [BEST]
+[eval] epoch=69 rel_l2=0.280162 rmse=0.164870 rel_fro=0.281728 [BEST]
+[eval] epoch=70 rel_l2=0.277191 rmse=0.163119 rel_fro=0.278735 [BEST]
+[eval] epoch=71 rel_l2=0.274467 rmse=0.161553 rel_fro=0.276059 [BEST]
+[eval] epoch=72 rel_l2=0.272029 rmse=0.160166 rel_fro=0.273690 [BEST]
+[eval] epoch=73 rel_l2=0.270217 rmse=0.159152 rel_fro=0.271958 [BEST]
+[eval] epoch=74 rel_l2=0.268522 rmse=0.158233 rel_fro=0.270386 [BEST]
+[eval] epoch=75 rel_l2=0.267344 rmse=0.157589 rel_fro=0.269286 [BEST]
+[eval] epoch=76 rel_l2=0.266335 rmse=0.157040 rel_fro=0.268349 [BEST]
+[eval] epoch=77 rel_l2=0.265688 rmse=0.156677 rel_fro=0.267728 [BEST]
+[eval] epoch=78 rel_l2=0.265120 rmse=0.156374 rel_fro=0.267211 [BEST]
+[eval] epoch=79 rel_l2=0.264774 rmse=0.156189 rel_fro=0.266895 [BEST]
+[eval] epoch=80 rel_l2=0.264646 rmse=0.156119 rel_fro=0.266776 [BEST]
+[eval] epoch=81 rel_l2=0.264713 rmse=0.156147 rel_fro=0.266823
+[eval] epoch=82 rel_l2=0.265198 rmse=0.156380 rel_fro=0.267221
+[eval] epoch=83 rel_l2=0.266016 rmse=0.156777 rel_fro=0.267900
+[eval] epoch=84 rel_l2=0.266829 rmse=0.157181 rel_fro=0.268590
+[eval] epoch=85 rel_l2=0.267469 rmse=0.157494 rel_fro=0.269126
+[eval] epoch=86 rel_l2=0.267799 rmse=0.157646 rel_fro=0.269385
+[eval] epoch=87 rel_l2=0.268049 rmse=0.157762 rel_fro=0.269583
+[eval] epoch=88 rel_l2=0.268456 rmse=0.157970 rel_fro=0.269938
+[eval] epoch=89 rel_l2=0.268840 rmse=0.158180 rel_fro=0.270297
+[eval] epoch=90 rel_l2=0.268880 rmse=0.158230 rel_fro=0.270382
+[eval] epoch=91 rel_l2=0.268368 rmse=0.158035 rel_fro=0.270047
+[eval] epoch=92 rel_l2=0.268346 rmse=0.158104 rel_fro=0.270166
+[eval] epoch=93 rel_l2=0.268290 rmse=0.158158 rel_fro=0.270258
+[eval] epoch=94 rel_l2=0.267914 rmse=0.158042 rel_fro=0.270059
+[eval] epoch=95 rel_l2=0.267933 rmse=0.158090 rel_fro=0.270142
+[eval] epoch=96 rel_l2=0.267698 rmse=0.157987 rel_fro=0.269966
+[eval] epoch=97 rel_l2=0.267185 rmse=0.157731 rel_fro=0.269528
+[eval] epoch=98 rel_l2=0.266391 rmse=0.157310 rel_fro=0.268809
+[eval] epoch=99 rel_l2=0.265621 rmse=0.156920 rel_fro=0.268142
+Training complete.
+Running final test inference...
+Best eval checkpoint: epoch=80 rel_l2=0.264646
+Final held-out test metrics:
+  Relative L2 Error: 0.242115
+  RMSE: 0.148682
+  Relative Frobenius Error: 0.246830
+Running checkpoints: dir=/cluster/work/projects/nn8104k/esther_thesis/CFO_official/checkpoints/running keep=3
+Best checkpoint: dir=/cluster/work/projects/nn8104k/esther_thesis/CFO_official/checkpoints/best keep=1
+===== TRAINING FINISHED =====
+Fri Nov 13 02:56:09 PM CET 2026
+
+Job 2859468 consumed 0.0 billing hours and 0.1 GPU hours from project nn8104k.
+
+Submitted 2026-11-13T14:33:44; waited 18.3 minutes in the queue after becoming eligible to run.
+
+Requested wallclock time: 4.0 hours
+Elapsed wallclock time:   4.1 minutes
+
+Job exited normally.
+
+Task and CPU statistics:
+ID             CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+2859468           4            0.0 %  2026-11-13T14:52:04  245.0 s  0
+2859468.batch     4      1    20.3 %  2026-11-13T14:52:04  245.0 s  0
+
+Used CPU time:   3.3 CPU minutes
+Unused CPU time: 13.0 CPU minutes
+
+Memory statistics, in GiB:
+ID              Alloc   Usage
+2859468         120.0        
+2859468.batch   120.0    17.6
+
+Job 2859468 completed at Fri Nov 13 14:56:09 CET 2026

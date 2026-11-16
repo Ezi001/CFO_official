@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/cluster/work/projects/nn8104k/esther_thesis/CFO_official/scripts/train_cfo.py", line 215, in <module>
+    main()
+  File "/cluster/work/projects/nn8104k/esther_thesis/CFO_official/scripts/train_cfo.py", line 95, in main
+    static_data = load_static_variables(args.dataset_path)
+                  ^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'load_static_variables' is not defined

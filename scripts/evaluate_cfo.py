@@ -33,7 +33,7 @@ def parse_args() -> argparse.Namespace:
         "--dataset",
         type=str,
         required=True,
-        choices=["lorenz", "burgers", "dr", "swe"],
+        choices=["lorenz", "burgers", "dr", "swe", "nordic"],
         help="Dataset name",
     )
     parser.add_argument("--dataset-path", type=str, default=None, help="Optional dataset file path override")
@@ -100,6 +100,7 @@ def main() -> None:
     args = parse_args()
 
     target = _load_target(args)
+    print(np.shape(target)[0])
     method, state, ckpt_dir = _restore_state(args, target)
 
     pred = method.uniform_inference(

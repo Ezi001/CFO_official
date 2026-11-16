@@ -1,0 +1,69 @@
+Starting job 2984371 on gpu-1-77 on Olivia at Mon Nov 16 14:12:28 CET 2026
+
+===== JOB INFO =====
+Job ID: 2984371
+Node: gpu-1-77
+Architecture: aarch64
+CUDA_VISIBLE_DEVICES: 0
+===== NVIDIA GPU =====
+Mon Nov 16 14:12:29 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.65.06              Driver Version: 580.65.06      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GH200 120GB             On  |   00000009:01:00.0 Off |                    0 |
+| N/A   23C    P0             81W /  900W |       3MiB /  97871MiB |      0%   E. Process |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+===== PYTHON CHECK =====
+JAX: 0.4.36 [CudaDevice(id=0)]
+Architecture: aarch64
+===== START CFO TRAINING =====
+Mon Nov 16 02:12:32 PM CET 2026
+Target shape: (0, 100, 128, 128, 1)
+Pred shape:   (0, 100, 128, 128, 1)
+Method: cfo
+Target source: dataset=nordic split=test
+Inference: solver=RK4 steps_per_segment=2
+Checkpoint: dir=/cluster/work/projects/nn8104k/esther_thesis/CFO_official/checkpoints/best prefix=debug_run step=latest
+Relative L2: nan
+RMSE: nan
+Relative Frobenius: nan
+Saved prediction array: /cluster/work/projects/nn8104k/esther_thesis/CFO_official/pred.npy
+===== TRAINING FINISHED =====
+Mon Nov 16 02:13:07 PM CET 2026
+
+Job 2984371 consumed 0.0 billing hours and 0.0 GPU hours from project nn8104k.
+
+Submitted 2026-11-16T14:12:18; waited 10.0 seconds in the queue after becoming eligible to run.
+
+Requested wallclock time: 4.0 hours
+Elapsed wallclock time:   39.0 seconds
+
+Job exited normally.
+
+Task and CPU statistics:
+ID             CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+2984371           4            0.0 %  2026-11-16T14:12:28   39.0 s  0
+2984371.batch     4      1    24.0 %  2026-11-16T14:12:28   39.0 s  0
+
+Used CPU time:   37.4 CPU seconds
+Unused CPU time: 2.0 CPU minutes
+
+Memory statistics, in GiB:
+ID              Alloc   Usage
+2984371         120.0        
+2984371.batch   120.0    17.1
+
+Job 2984371 completed at Mon Nov 16 14:13:07 CET 2026
